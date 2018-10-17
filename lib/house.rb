@@ -31,8 +31,7 @@ class House
     sorted_rooms = @rooms.sort_by do |room|
       room.area
     end
-    require 'pry'; bi
-    sorted_rooms
+    sorted_rooms.reverse
   end
   
   
