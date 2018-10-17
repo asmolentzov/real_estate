@@ -64,9 +64,25 @@ class HouseTest < Minitest::Test
   def test_it_can_sort_rooms_by_area
     @house.add_room(@room_1)
     @house.add_room(@room_2) 
+    @house.add_room(@room_4)
+    @house.add_room(@room_3) 
+    
+    expected = [@room_4, @room_3, @room_2, @room_1]
+    actual = @house.rooms_sorted_by_area
+    assert_equal expected, actual
+  end
+  
+  def test_it_can_sort_by_room_categeory
+    @house.add_room(@room_1)
+    @house.add_room(@room_2) 
     @house.add_room(@room_3) 
     @house.add_room(@room_4)
-    assert_equal [@room_4, @room_3, @room_2, @room_1], @house.rooms_sorted_by_area
+    
+    expected = {:bedroom => [@room_1, @room_2], 
+                :living_room => [@room_3], 
+                :basement => [@room_4]}
+    actual = @house.rooms_by_category
+    assert_equal expected, actual
   end
   
   

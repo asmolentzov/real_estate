@@ -34,5 +34,13 @@ class House
     sorted_rooms.reverse
   end
   
+  def rooms_by_category
+    room_categories = {}
+    @rooms.each do |room|
+      room_categories[room.category] = 
+        @rooms.find_all { |r| r.category == room.category }
+    end
+    room_categories
+  end
   
 end
