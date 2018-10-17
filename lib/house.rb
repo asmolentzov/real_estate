@@ -38,7 +38,7 @@ class House
     room_categories = {}
     @rooms.each do |room|
       room_categories[room.category] = 
-        @rooms.find_all { |r| r.category == room.category }
+        rooms_from_category(room.category)
     end
     room_categories
   end

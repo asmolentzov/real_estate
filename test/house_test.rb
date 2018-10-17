@@ -84,6 +84,5 @@ class HouseTest < Minitest::Test
     actual = @house.rooms_by_category
     assert_equal expected, actual
   end
-  
-  
+
 end
