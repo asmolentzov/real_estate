@@ -1,9 +1,13 @@
 class House
-  attr_reader :price, :address, :rooms
+  attr_reader :address, :rooms
   def initialize(price, address)
-    @price = price[1..-1].to_i
+    @price = price
     @address = address
     @rooms = []
+  end
+  
+  def price
+    @price.sub("$", "").to_i
   end
   
   def add_room(room)
@@ -24,7 +28,7 @@ class House
   end
   
   def price_per_square_foot
-    (@price.to_f / area.to_f).round(2)
+    (price.to_f / area.to_f).round(2)
   end
   
   def rooms_sorted_by_area
@@ -35,12 +39,16 @@ class House
   end
   
   def rooms_by_category
-    room_categories = {}
-    @rooms.each do |room|
-      room_categories[room.category] = 
-        rooms_from_category(room.category)
-    end
-    room_categories
-  end
+  #   room_categories = {}
+  #   @rooms.each do |room|
+  #     room_categories[room.category] = 
+  #       rooms_from_category(room.category)
+  #   end
+  #   room_categories
+  # end
   
+    @rooms.group_by do |room|
+      room.category
+    end
+  end
 end
